@@ -1,1 +1,1 @@
-
+require('aframe-text-component')

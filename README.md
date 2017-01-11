@@ -1,31 +1,22 @@
 # A-Frame Boilerplate
 
-Boilerplate for creating WebVR scenes using A-Frame.
+Boilerplate for creating WebVR scenes using A-Frame and Jade/Pug templates, with Dockerfile & express server for easy deployment.
 
 
 ## Getting Started
 
-### <small><sup>Option 2:</sup> Fork this Git repo 🍴
+### Fork this Git repo
 
-Alternatively, you can __[fork this repo](https://github.com/aframevr/aframe-jade-boilerplate/fork)__ to get started, if you'd like to maintain a Git workflow.
+    git clone git@github.com:your_username/aframe-pug-boilerplate.git
+    cd aframe-pug-boilerplate && npm install && npm start
 
-After you have __[forked this repo](https://github.com/aframevr/aframe-jade-boilerplate/fork)__, clone a copy of your fork locally and you'll be have your scene ready in these few steps:
+## Publishing to Github Pages scene
 
-    git clone git@github.com:your_username/aframe-jade-boilerplate.git
-    cd aframe-jade-boilerplate && npm install && npm start
-
-### <small><sup>Option 3:</sup> Fork this CodePen example
-
-Or, you can simply __[fork this CodePen example](http://codepen.io/kevining/pen/PZqaYw?editors=100)__ to dive right in. Enjoy!
-
-
-## Publishing your scene
-
-If you don't already know, GitHub offers free and awesome publishing of static sites through __[https://pages.github.com/](GitHub Pages)__.
+GitHub offers free publishing of static sites through __[https://pages.github.com/](GitHub Pages)__.
 
 To publish your scene to your personal GitHub Pages:
 
-    npm run deploy
+    npm run ghpages
 
 And, it'll now be live at __http://`your_username`.github.io/__ :)
 
@@ -41,7 +32,7 @@ To serve the site from a simple Node development server:
 
     npm start
 
-Then launch the site from your favourite browser:
+This should launch the site in your default browser:
 
 [__http://localhost:3000/__](http://localhost:3000/)
 
@@ -49,6 +40,14 @@ If you wish to serve the site from a different port:
 
     PORT=8000 npm start
 
+### Deploying with Dokku
+
+In this repo you will find `Dockerfile` and `server.js`. The Dockerfile builds the project and then runs `server.js` using `pm2`
+
+You can publish this anywhere, but if you have a Dokku server setup and your keys pushed up to it you can simply deploy it like this:
+
+    git remote add dokku dokku@yourserver.com:appname
+    git push dokku master
 
 ## License
 

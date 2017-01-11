@@ -1,31 +1,53 @@
 {
   "name": "aframe-jade-docker-boilerplate",
-  "description": "Boilerplate for creating WebVR scenes using A-Frame and Jade templates, with Dockerfile for easy deployability.",
+  "description": "Boilerplate for creating WebVR scenes using A-Frame and Jade/Pug templates, with Dockerfile & express server for easy deployment.",
   "version": "0.0.0",
   "license": "MIT",
+  "watch": {
+    "build": "*.pug"
+  },
   "scripts": {
-    "help": "pug --help",
-    "start": "npm run build && node server.js",
-    "build": "pug -o build *.pug",
-    "prod": "npm run build && pm2 start server.js --no-daemon -i 0",
-    "dev": "npm run build && budo --dir build/ --live --verbose --port 3000 --open",
+    "webpack": "rimraf build && webpack --progress --colors --watch",
+    "build:pug": "rimraf build && pug -o build --pretty ./app/*.pug",
+    "prod": "npm run build:pug && pm2 start server.js --no-daemon -i 0",
+    "start": "parallelshell 'npm run watch' 'npm run webpack' 'budo --dir build/ --live --verbose --port 3000 --open'",
+    "watch": "watch 'npm run build:pug' ./app",
     "ghpages": "ghpages"
   },
   "devDependencies": {
     "budo": "^7.0.0",
+    "file-loader": "^0.9.0",
     "ghpages": "0.0.3",
+    "html-loader": "^0.4.4",
+    "npm-watch": "^0.1.7",
+    "parallelshell": "^2.0.0",
     "pug": "^2.0.0-beta6",
-    "pug-cli": "^1.0.0-alpha6"
+    "pug-cli": "^1.0.0-alpha6",
+    "pug-html-loader": "^1.1.0",
+    "pug-loader": "^2.3.0",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.5.4",
+    "url-loader": "^0.5.7",
+    "watch": "^1.0.1",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
   },
   "keywords": [
     "aframe",
+    "jade",
+    "pug",
+    "watch",
     "aframe-example",
     "aframe-scene",
     "aframe-boilerplate",
     "aframe-jade-boilerplate",
-    "aframe-docker"
+    "aframe-pug-boilerplate",
+    "docker",
+    "live reload",
+    "deployment"
   ],
   "dependencies": {
+    "aframe-extras": "^3.2.2",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
